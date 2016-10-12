@@ -1,0 +1,16 @@
+{
+  "globalDependencies": {
+    "react": "registry:dt/react#0.14.0+20161008064207",
+    "react-native": "registry:dt/react-native#0.34.0+20161012133835",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
+    "redux": "registry:dt/redux#3.5.2+20160703092728",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921",
+    "reselect": "registry:dt/reselect#2.0.2+20160319031821"
+  },
+  "globalDevDependencies": {
+    "babel-core": "registry:dt/babel-core#6.7.0+20160423062108",
+    "redux-devtools": "registry:dt/redux-devtools#3.0.0+20161003133120",
+    "webpack": "registry:dt/webpack#1.12.9+20160927034556",
+    "webpack-dev-server": "registry:dt/webpack-dev-server#1.12.1+20161006194436"
+  }
+}
