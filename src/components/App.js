@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactNative, {
   View,
-  Text,
 } from 'react-native';
+
 import Viewer from './Viewer';
+import Navbar from './Navbar';
 
 export default () => (
-  <View>
-    <Text>Welcome into the App</Text>
+  <View style={{ flex: 1 }}>
+    <Navbar />
     <Viewer />
   </View>
 );
