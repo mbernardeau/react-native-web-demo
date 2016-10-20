@@ -1,4 +1,5 @@
 /// <reference path="globals/babel-core/index.d.ts" />
+/// <reference path="globals/moment/index.d.ts" />
 /// <reference path="globals/react-native/index.d.ts" />
 /// <reference path="globals/react-redux/index.d.ts" />
 /// <reference path="globals/react/index.d.ts" />
