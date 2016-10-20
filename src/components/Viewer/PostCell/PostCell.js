@@ -11,18 +11,23 @@ import ReactNative, {
   Image,
 } from 'react-native';
 
-const PostCell = ({ title, preview, author }) => {
+import moment from 'moment';
+
+const PostCell = ({ title, preview, author, created_utc, subreddit, num_comments, score }) => {
   return (
-    <TouchableOpacity style={{ paddingLeft: 5 }}>
+    <TouchableOpacity style={styles.mainContainer}>
       <View style={styles.container}>
-      {preview &&
-        <Image source={{uri: preview.images[0].source.url}} style={styles.avatars} />
-      }
+        {preview &&
+          <Image source={{uri: preview.images[0].source.url}} style={styles.avatars} />
+        }
         <View style={styles.textContainer}>
-          <Text style={styles.baseText && styles.name}>{title}</Text>
-          <Text style={styles.baseText && styles.agency}>{author}</Text>
-          <Text style={styles.baseText && styles.department}></Text>
+          <Text style={styles.baseText && styles.author}>r/{subreddit} • {moment(created_utc, 'X').from()} • u/{author}</Text>
+          <Text style={styles.baseText && styles.title}>{title}</Text>
         </View>
+      </View>
+      <View style={styles.bottomContainer}>
+        <Text style={styles.baseText && styles.date}>{num_comments || 'No'} comment{num_comments > 1 ? 's' : ''}</Text>
+        <Text style={styles.baseText}>{score} ⬆ • ⬇</Text>
       </View>
     </TouchableOpacity>);
 };
@@ -30,6 +35,10 @@ const PostCell = ({ title, preview, author }) => {
 PostCell.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  created_utc: PropTypes.number.isRequired,
+  subreddit: PropTypes.string.isRequired,
+  num_comments: PropTypes.number.isRequired,
+  score: PropTypes.number.isRequired,
   preview: PropTypes.shape({
     images: PropTypes.arrayOf(
       PropTypes.shape({
@@ -50,7 +59,7 @@ PostCell.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    height: 65,
     flex: 1,
     flexDirection: 'row',
   },
@@ -61,14 +70,34 @@ const styles = StyleSheet.create({
     borderRadius: 25, // Must be half the size of the image to obtain the 'circle' effect of images
   },
   baseText: {
-    fontFamily: 'Cochin',
+    fontSize: 12,
+    fontFamily: 'helvetica',
   },
-  name: {
-    fontWeight: 'bold',
+  title: {
+    flex: 3,
+    fontSize: 14,
   },
   textContainer: {
-      flex: 1,
-      marginLeft: 10,
+    flex: 1,
+    justifyContent: 'space-between',
+    marginLeft: 10,
+  },
+  author: {
+    flex: 2,
+    fontSize: 13,
+  },
+  date: {
+    flex: 2,
+    fontSize: 10,
+    color: 'darkgray',
+  },
+  bottomContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  mainContainer: {
+    paddingLeft: 5,
   },
 });
 
