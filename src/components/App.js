@@ -1,14 +1,8 @@
 import React from 'react';
-import ReactNative, {
-  View,
-} from 'react-native';
+import ReactNative from 'react-native';
 
-import Viewer from './Viewer';
-import Navbar from './Navbar';
+import Navigator from './Navigator';
 
 export default () => (
-  <View style={{ flex: 1 }}>
-    <Navbar />
-    <Viewer />
-  </View>
+  <Navigator />
 );

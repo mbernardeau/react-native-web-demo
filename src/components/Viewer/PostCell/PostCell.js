@@ -5,7 +5,7 @@ import React, {
 import ReactNative, {
   View,
   Text,
-  ListView,
+  Platform,
   StyleSheet,
   TouchableOpacity,
   Image,
@@ -13,9 +13,9 @@ import ReactNative, {
 
 import moment from 'moment';
 
-const PostCell = ({ title, preview, author, created_utc, subreddit, num_comments, score }) => {
+const PostCell = ({ title, preview, author, created_utc, subreddit, num_comments, score, goToPost }) => {
   return (
-    <TouchableOpacity style={styles.mainContainer}>
+    <TouchableOpacity style={styles.mainContainer} /* onPress={goToPost} */>
       <View style={styles.container}>
         {preview &&
           <Image source={{uri: preview.images[0].source.url}} style={styles.avatars} />
@@ -55,11 +55,12 @@ PostCell.propTypes = {
       }),
     ),
   }),
+  goToPost: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 65,
+    height: 70,
     flex: 1,
     flexDirection: 'row',
   },
@@ -75,7 +76,11 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 3,
-    fontSize: 14,
+    fontSize: Platform.select({
+      web: 14,
+      ios: 11,
+      android: 11,
+    }),
   },
   textContainer: {
     flex: 1,
@@ -95,6 +100,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    ...Platform.select({
+      ios: {
+        height: 22,
+      },
+      android: {
+        height: 22,
+      },
+    }),
   },
   mainContainer: {
     paddingLeft: 5,

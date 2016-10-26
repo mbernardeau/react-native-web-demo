@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Viewer from './Viewer';
-import { fetchPostsIfNeeded } from '../../redux/actions';
+import { fetchPostsIfNeeded, goToPost } from '../../redux/actions';
 
 const mapStateToProps = (state) => ({
   thread: state.postsBySubreddit[state.selectedSubreddit],
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: (subreddit) => dispatch(fetchPostsIfNeeded(subreddit)),
+  goToPost: (postId) => () => dispatch(goToPost(postId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Viewer);

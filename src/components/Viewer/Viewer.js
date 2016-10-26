@@ -15,6 +15,7 @@ class Viewer extends Component {
     fetchPosts: PropTypes.func.isRequired,
     thread: PropTypes.object,
     selectedSubreddit: PropTypes.string,
+    goToPost: PropTypes.func.isRequired,
   }
 
   constructor(props){
@@ -40,7 +41,7 @@ class Viewer extends Component {
       <View style={{ flex: 1 }}>
         <ListView
           dataSource={this.state.ds}
-          renderRow={(post) => <PostCell {...post} />}
+          renderRow={(post) => <PostCell {...post} goToPost={this.props.goToPost(post.permalink)} />}
           renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
         />
       </View>

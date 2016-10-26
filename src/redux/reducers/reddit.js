@@ -51,3 +51,23 @@ export function postsBySubreddit(state = { }, action) {
       return state;
   }
 }
+
+const initComments = {};
+export function comments(state = initComments, action){
+  switch (action.type) {
+    case 'SET_POST': {
+      return {
+        ...state,
+        selected: action.postId,
+      };
+    }
+    case 'RECEIVE_POST': {
+      return {
+        ...state,
+        [action.permalink]: action.post,
+      };
+    }
+    default:
+      return state;
+  }
+}
